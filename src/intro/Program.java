@@ -14,7 +14,13 @@ public class Program {
     }
 
     public static int asInteger(String input) {
-        return 0;
+        int number = 0;
+        for(int i = 0; i < input.length(); i++){
+            if(input.charAt(i) == '1'){
+                number += 1 << (7-i); //millegi pärast pow ei tööta
+            }
+        }
+        return number;
     }
 
     private static int pow(int arg, int power) {
