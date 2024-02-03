@@ -5,19 +5,28 @@ public class Program {
     public static void main(String[] args) {
 
         int integer = asInteger("11001101");
-
-        System.out.println(integer); // 205
+        String string = asBinaryString(205);
+        System.out.println(string); // 205
     }
 
     public static String asBinaryString(int input) {
-        return "";
+        String output = "";
+        while(input > 0){
+            if(input % 2 == 1){
+                output = '1' + output;
+            }else {
+                output = '0' + output;
+            }
+            input = input / 2;
+        }
+        return output;
     }
 
     public static int asInteger(String input) {
         int number = 0;
         for(int i = 0; i < input.length(); i++){
             if(input.charAt(i) == '1'){
-                number += 1 << (7-i); //millegi pärast pow ei tööta
+                number += pow(1, 7-i);
             }
         }
         return number;
@@ -25,7 +34,6 @@ public class Program {
 
     private static int pow(int arg, int power) {
         // Java has Math.pow() but this time write your own implementation.
-
-        return 0;
+        return arg << power;
     }
 }
