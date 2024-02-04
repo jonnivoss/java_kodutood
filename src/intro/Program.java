@@ -4,8 +4,8 @@ public class Program {
 
     public static void main(String[] args) {
 
-        int integer = asInteger("11111111");
-        String string = asBinaryString(255);
+        int integer = asInteger("11001101");
+        String string = asBinaryString(205);
 
         System.out.println(integer); //1111111
         System.out.println(string); // 205
@@ -29,7 +29,7 @@ public class Program {
         int number = 0;
         for(int i = 0; i < input.length(); i++){
             if(input.charAt(i) == '1'){
-                number += pow(2, 7-i);
+                number += pow(2, input.length()-i-1);
             }
         }
         return number;
