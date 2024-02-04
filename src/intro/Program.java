@@ -6,6 +6,7 @@ public class Program {
 
         int integer = asInteger("11001101");
         String string = asBinaryString(205);
+        System.out.println(integer);
         System.out.println(string); // 205
     }
 
@@ -26,7 +27,7 @@ public class Program {
         int number = 0;
         for(int i = 0; i < input.length(); i++){
             if(input.charAt(i) == '1'){
-                number += pow(1, 7-i);
+                number += pow(2, 7-i);
             }
         }
         return number;
@@ -34,6 +35,11 @@ public class Program {
 
     private static int pow(int arg, int power) {
         // Java has Math.pow() but this time write your own implementation.
-        return arg << power;
+        int output = 1;
+        for (int i = 0; i < power; i++){
+            output *= arg;
+        }
+
+        return output;
     }
 }
