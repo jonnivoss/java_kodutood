@@ -3,7 +3,7 @@ package types;
 public class StackTrace {
 
     public static void main(String[] args) {
-        calculatePrice();
+        System.out.println(calculatePrice());
     }
 
     public static Double calculatePrice() {
@@ -24,7 +24,7 @@ public class StackTrace {
 
     public static Integer readProfitConstant() {
         // Some code that produces null
-        Integer result = null;
+        Integer result = 2; //see rida
 
         return result;
     }

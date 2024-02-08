@@ -23,83 +23,41 @@ public class Pmd {
 
     // intentionally bad code
     public static boolean containsTrueCell(boolean[][] matrix) {
-        boolean result = false;
-        if (matrix[0][0]) {
-            result = true;
+        for(int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < matrix[0].length; j++){
+                if(matrix[i][j]){
+                    return true;
+                }
+            }
         }
-        if (matrix[0][1]) {
-            result = true;
-        }
-        if (matrix[0][2]) {
-            result = true;
-        }
-        if (matrix[1][0]) {
-            result = true;
-        }
-        if (matrix[1][1]) {
-            result = true;
-        }
-        if (matrix[1][2]) {
-            result = true;
-        }
-        if (matrix[2][0]) {
-            result = true;
-        }
-        if (matrix[2][1]) {
-            result = true;
-        }
-        if (matrix[2][2]) {
-            result = true;
-        }
-
-        return result;
+        return false;
     }
 
     // intentionally bad code
     public static int findFirstTrueCell(boolean[][] matrix) {
-        if (matrix[0][0]) {
-            return 1;
+        int counter = 0;
+        for(int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < matrix[0].length; j++){
+                if(matrix[i][j]){
+                    return counter;
+                }
+                counter++;
+            }
         }
-        if (matrix[0][1]) {
-            return 2;
-        }
-        if (matrix[0][2]) {
-            return 3;
-        }
-        if (matrix[1][0]) {
-            return 4;
-        }
-        if (matrix[1][1]) {
-            return 5;
-        }
-        if (matrix[1][2]) {
-            return 6;
-        }
-        if (matrix[2][0]) {
-            return 7;
-        }
-        if (matrix[2][1]) {
-            return 8;
-        }
-        if (matrix[2][2]) {
-            return 9;
-        }
-
         return -1;
     }
 
     // intentionally bad code
     public static int countTrueRow(boolean[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                if (matrix[i][j]) {
+        for (boolean[] booleans : matrix) {
+            for (boolean bool : booleans) {
+                if(bool){
                     int count = 0;
-                    for (int k = 0; k < matrix.length; k++) {
-                        if (matrix[i][k]) {
+                    for(boolean b : booleans){
+                        if(b){
                             count++;
                         }
                     }
-
                     return count;
                 }
             }

@@ -8,50 +8,176 @@ public class Code {
     public static void main(String[] args) {
 
         int[] numbers = {1, 3, -2, 9};
+        String a = "10asdf239a";
+        System.out.println(isolatedSquareCount()); //
 
-        System.out.println(sum(numbers)); // 11
     }
 
+    //done 5.
     public static int sum(int[] numbers) {
-        return 0;
+        int sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+        return sum;
     }
 
+    //done 6.
     public static double average(int[] numbers) {
-        return 0.0;
+        Double summa = Double.valueOf(sum(numbers));
+        return summa / Double.valueOf(numbers.length);
     }
 
+    //done 7.
     public static Integer minimumElement(int[] integers) {
-        return null;
+        if(integers.length == 0){
+            return null;
+        } else if (integers.length == 1) {
+            return integers[0];
+        }
+        Integer min = integers[0];
+        for (int i = 1; i < integers.length; i++) {
+            if (integers[i] < min){
+                min = integers[i];
+            }
+        }
+        return min;
     }
 
+    //done 8.
     public static String asString(int[] elements) {
-        return "";
+        String out = "";
+        if (elements.length == 0){
+            return out;
+        }
+        out += (char)('0' + elements[0]);
+        for (int i = 1; i < elements.length; i++) {
+            out += ", ";
+            if(elements[i] < 0){
+                out += Character.toString(elements[i]);
+            }else {
+                out += Character.toString(elements[i]);
+            }
+        }
+        return out;
     }
 
+    //done 9.
     public static Character mode(String input) {
-        return null;
+        if(input.isEmpty()){
+            return null;
+        }
+        int len = input.length();
+        char letter = input.charAt(0), temp = input.charAt(0);
+        int counter = 0, lastcounter = 0;
+        String array = "";
+        for (int i = 0; i < len; i++) {
+            counter = 0;
+            temp = input.charAt(i);
+            if(array.indexOf(temp) != -1){
+                continue;
+            }
+            for (int j = 0; j < len; j++) {
+                if (temp == input.charAt(j)) {
+                    counter++;
+                }
+            }
+            if (counter > lastcounter) {
+                lastcounter = counter;
+                letter = temp;
+            }
+            array += temp;
+        }
+        return letter;
     }
 
+    //done 10.
     public static String squareDigits(String s) {
-        return "";
+        String out = "";
+        Integer temp;
+        for (int i = 0; i < s.length(); i++) {
+            if(Character.isDigit(s.charAt(i))){
+                String temp1 = "";
+                temp1 += s.charAt(i);
+                temp = Integer.parseInt(temp1);
+                temp *= temp;
+                out += temp;
+            }else {
+                out += s.charAt(i);
+            }
+        }
+        return out;
     }
 
+    //done 12.
     public static int isolatedSquareCount() {
         boolean[][] matrix = getSampleMatrix();
 
         int isolatedCount = 0;
+        boolean wasNot = false;
+        printMatrix(matrix);
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[0].length; col++) {
+                if(!matrix[row][col]){
+                    continue;
+                }
+                wasNot = false;
+                int endRow = (row > 8)? 9 : row + 1;
+                int begRow = (row < 1)? 0 : row - 1;
 
-        // count isolates squares here
+                int endCol = (col > 8)? 9 : col + 1;
+                int begCol = (col < 1)? 0 : col - 1;
+
+                for (int i = begRow; i <= endRow; i++) {
+                    for (int j = begCol; j <= endCol; j++) {
+                        if(i == row && j == col){
+                            continue;
+                        }
+                        if (matrix[i][j]) {
+                            wasNot = true;
+                            break;
+                        }
+                    }
+                    if (wasNot){
+                        break;
+                    }
+                }
+                if(wasNot){
+                    continue;
+                }
+                isolatedCount++;
+            }
+        }
 
         return isolatedCount;
     }
 
+    //done 11.
     public static boolean isIsolated(int row, int col) {
         boolean[][] matrix = getSampleMatrix();
 
-        printMatrix(matrix);
+        if(!matrix[row][col]){
+            return false;
+        }
 
-        return false;
+        int endRow = (row > 8)? 9 : row + 1;
+        int endCol = (col > 8)? 9 : col + 1;
+        int begRow = (row < 1)? 0 : row - 1;
+        int begCol = (col < 1)? 0 : col - 1;
+
+        for (int i = begRow; i <= endRow; i++) {
+            for (int j = begCol; j <= endCol; j++) {
+                if(i == row && j == col){
+                    continue;
+                }
+                if(matrix[i][j]){
+                    return false;
+                }
+            }
+        }
+
+
+        return true;
     }
 
     private static void printMatrix(boolean[][] matrix) {
