@@ -7,8 +7,6 @@ public class Code {
 
     public static void main(String[] args) {
 
-        int[] numbers = {1, 3, -2, 9};
-        String a = "10asdf239a";
         System.out.println(isolatedSquareCount()); //
 
     }
@@ -50,9 +48,10 @@ public class Code {
         if (elements.length == 0){
             return out;
         }
-        out += (char)('0' + elements[0]);
+        out += Character.toString(elements[0]);
         for (int i = 1; i < elements.length; i++) {
-            out += ", ";
+            String space = ", ";
+            out += space;
             if(elements[i] < 0){
                 out += Character.toString(elements[i]);
             }else {
@@ -69,7 +68,7 @@ public class Code {
         }
         int len = input.length();
         char letter = input.charAt(0), temp = input.charAt(0);
-        int counter = 0, lastcounter = 0;
+        int counter, lastcounter = 0;
         String array = "";
         for (int i = 0; i < len; i++) {
             counter = 0;
@@ -114,8 +113,7 @@ public class Code {
         boolean[][] matrix = getSampleMatrix();
 
         int isolatedCount = 0;
-        boolean wasNot = false;
-        printMatrix(matrix);
+        boolean wasNot;
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[0].length; col++) {
                 if(!matrix[row][col]){
@@ -175,8 +173,6 @@ public class Code {
                 }
             }
         }
-
-
         return true;
     }
 

@@ -23,9 +23,9 @@ public class Pmd {
 
     // intentionally bad code
     public static boolean containsTrueCell(boolean[][] matrix) {
-        for(int i = 0; i < matrix.length; i++){
-            for (int j = 0; j < matrix[0].length; j++){
-                if(matrix[i][j]){
+        for(boolean[] booleans : matrix){
+            for (boolean bool : booleans){
+                if(bool){
                     return true;
                 }
             }
@@ -36,9 +36,9 @@ public class Pmd {
     // intentionally bad code
     public static int findFirstTrueCell(boolean[][] matrix) {
         int counter = 0;
-        for(int i = 0; i < matrix.length; i++){
-            for (int j = 0; j < matrix[0].length; j++){
-                if(matrix[i][j]){
+        for(boolean[] booleans : matrix){
+            for (boolean bool : booleans){
+                if(bool){
                     return counter;
                 }
                 counter++;
