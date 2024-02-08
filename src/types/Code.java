@@ -67,7 +67,7 @@ public class Code {
             return null;
         }
         int len = input.length();
-        char letter = input.charAt(0), temp = input.charAt(0);
+        char letter = input.charAt(0), temp;
         int counter, lastcounter = 0;
         String array = "";
         for (int i = 0; i < len; i++) {
@@ -120,11 +120,11 @@ public class Code {
                     continue;
                 }
                 wasNot = false;
-                int endRow = (row > 8)? 9 : row + 1;
-                int begRow = (row < 1)? 0 : row - 1;
+                int endRow = row > 8? 9 : row + 1;
+                int begRow = row < 1? 0 : row - 1;
 
-                int endCol = (col > 8)? 9 : col + 1;
-                int begCol = (col < 1)? 0 : col - 1;
+                int endCol = col > 8? 9 : col + 1;
+                int begCol = col < 1? 0 : col - 1;
 
                 for (int i = begRow; i <= endRow; i++) {
                     for (int j = begCol; j <= endCol; j++) {
@@ -158,12 +158,12 @@ public class Code {
             return false;
         }
 
-        int endRow = (row > 8)? 9 : row + 1;
-        int endCol = (col > 8)? 9 : col + 1;
-        int begRow = (row < 1)? 0 : row - 1;
-        int begCol = (col < 1)? 0 : col - 1;
+        int endRow = row > 8? 9 : row + 1;
+        int endCol = col > 8? 9 : col + 1;
+        int begRow = row < 1? 0 : row - 1;
+        int begCol = col < 1? 0 : col - 1;
 
-        for (int i = begRow; i <= endRow; i++) {
+        /*for (int i = begRow; i <= endRow; i++) {
             for (int j = begCol; j <= endCol; j++) {
                 if(i == row && j == col){
                     continue;
@@ -172,6 +172,33 @@ public class Code {
                     return false;
                 }
             }
+        }*/
+        if(matrix[begRow][begCol]){
+            return false;
+        }
+        if(matrix[begRow][begCol+1]){
+            return false;
+        }
+        if(matrix[begRow][endCol]){
+            return false;
+        }
+        if(matrix[begRow+1][begCol]){
+            return false;
+        }
+        if(matrix[begRow+1][begCol+1]){
+            return false;
+        }
+        if(matrix[begRow+1][endCol]){
+            return false;
+        }
+        if(matrix[endRow][begCol]){
+            return false;
+        }
+        if(matrix[endRow][begCol+1]){
+            return false;
+        }
+        if(matrix[endRow][endCol]){
+            return false;
         }
         return true;
     }
