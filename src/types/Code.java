@@ -150,6 +150,15 @@ public class Code {
         return isolatedCount;
     }
 
+    private static int[] minAndMax(int row, int col){
+        int endRow = row > 8? 9 : row + 1;
+        int endCol = col > 8? 9 : col + 1;
+        int begRow = row < 1? 0 : row - 1;
+        int begCol = col < 1? 0 : col - 1;
+        int[] arr = new int[]{begRow,endRow,begCol,endCol};
+        return arr;
+    }
+
     //done 11.
     public static boolean isIsolated(int row, int col) {
         boolean[][] matrix = getSampleMatrix();
@@ -158,13 +167,10 @@ public class Code {
             return false;
         }
 
-        int endRow = row > 8? 9 : row + 1;
-        int endCol = col > 8? 9 : col + 1;
-        int begRow = row < 1? 0 : row - 1;
-        int begCol = col < 1? 0 : col - 1;
+        int[] arr = minAndMax(row, col);
 
-        /*for (int i = begRow; i <= endRow; i++) {
-            for (int j = begCol; j <= endCol; j++) {
+        for (int i = arr[0]; i <= arr[1]; i++) {
+            for (int j = arr[2]; j <= arr[3]; j++) {
                 if(i == row && j == col){
                     continue;
                 }
@@ -172,33 +178,6 @@ public class Code {
                     return false;
                 }
             }
-        }*/
-        if(matrix[begRow][begCol]){
-            return false;
-        }
-        if(matrix[begRow][begCol+1]){
-            return false;
-        }
-        if(matrix[begRow][endCol]){
-            return false;
-        }
-        if(matrix[begRow+1][begCol]){
-            return false;
-        }
-        if(matrix[begRow+1][begCol+1]){
-            return false;
-        }
-        if(matrix[begRow+1][endCol]){
-            return false;
-        }
-        if(matrix[endRow][begCol]){
-            return false;
-        }
-        if(matrix[endRow][begCol+1]){
-            return false;
-        }
-        if(matrix[endRow][endCol]){
-            return false;
         }
         return true;
     }
