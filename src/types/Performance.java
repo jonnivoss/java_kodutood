@@ -9,7 +9,7 @@ public class Performance {
         double r = 0;
         for (int i = 0; i < 1e8; i++) {
             //r += (float) i / 2;
-            r += Float.valueOf(i) / 2;
+            r += Double.valueOf(i) / 2;
         }
 
         System.out.println((System.currentTimeMillis() - start) / 1000);
