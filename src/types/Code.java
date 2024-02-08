@@ -108,42 +108,32 @@ public class Code {
         return out;
     }
 
+
+    private static boolean hasTrue(boolean[][] matrix, int row, int col) {
+        int[] arr = minAndMax(row, col);
+
+        for (int i = arr[0]; i <= arr[1]; i++) {
+            for (int j = arr[2]; j <= arr[3]; j++) {
+                if(i == row && j == col){
+                    continue;
+                }
+                if(matrix[i][j]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     //done 12.
     public static int isolatedSquareCount() {
         boolean[][] matrix = getSampleMatrix();
-
         int isolatedCount = 0;
-        boolean wasNot;
+
         for (int row = 0; row < matrix.length; row++) {
-            for (int col = 0; col < matrix[0].length; col++) {
-                if(!matrix[row][col]){
-                    continue;
+            for (int col = 0; col < matrix[row].length; col++) {
+                if (matrix[row][col] && !hasTrue(matrix, row, col)) {
+                    isolatedCount++;
                 }
-                wasNot = false;
-                int endRow = row > 8? 9 : row + 1;
-                int begRow = row < 1? 0 : row - 1;
-
-                int endCol = col > 8? 9 : col + 1;
-                int begCol = col < 1? 0 : col - 1;
-
-                for (int i = begRow; i <= endRow; i++) {
-                    for (int j = begCol; j <= endCol; j++) {
-                        if(i == row && j == col){
-                            continue;
-                        }
-                        if (matrix[i][j]) {
-                            wasNot = true;
-                            break;
-                        }
-                    }
-                    if (wasNot){
-                        break;
-                    }
-                }
-                if(wasNot){
-                    continue;
-                }
-                isolatedCount++;
             }
         }
 
