@@ -48,14 +48,14 @@ public class Code {
         if (elements.length == 0){
             return out;
         }
-        out += Character.toString(elements[0]);
+        out += elements[0];
         for (int i = 1; i < elements.length; i++) {
             String space = ", ";
             out += space;
             if(elements[i] < 0){
-                out += Character.toString(elements[i]);
+                out += elements[i];
             }else {
-                out += Character.toString(elements[i]);
+                out += elements[i];
             }
         }
         return out;
@@ -131,7 +131,7 @@ public class Code {
 
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {
-                if (matrix[row][col] && !hasTrue(matrix, row, col)) {
+                if (matrix[row][col] && hasTrue(matrix, row, col)) {
                     isolatedCount++;
                 }
             }
