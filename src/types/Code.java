@@ -145,8 +145,7 @@ public class Code {
         int endCol = col > 8? 9 : col + 1;
         int begRow = row < 1? 0 : row - 1;
         int begCol = col < 1? 0 : col - 1;
-        int[] arr = new int[]{begRow,endRow,begCol,endCol};
-        return arr;
+        return new int[]{begRow,endRow,begCol,endCol};
     }
 
     //done 11.
