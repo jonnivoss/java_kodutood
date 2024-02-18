@@ -3,6 +3,10 @@ package junit;
 public class Code {
 
     public static boolean isSpecial(int candidate) {
+        int a = candidate % 11;
+        if(a >= 0 && a <= 3){
+            return true;
+        }
         return false;
     }
 
@@ -25,5 +29,4 @@ public class Code {
     public static int sumIgnoringDuplicates(int[] integers) {
         return 0;
     }
-
 }
