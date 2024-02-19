@@ -66,7 +66,6 @@ public class TopSalesFinder {
         SalesRecord[] temp = Arrays.copyOf(records, records.length);
         // removes records with specified id
         int index = 0;
-        int indexExtra = 0;
         for (SalesRecord sale : records) {
             if(sale.getProductId().equals(id)){
                 temp = removeFromSalesArray(temp, index);
