@@ -72,8 +72,8 @@ public class Code {
         return array;
     }
     private static boolean isInList(int[] integers, int number){
-        for (int j = 0; j < integers.length; j++) {
-            if(number == integers[j]){
+        for (int integer : integers) {
+            if (number == integer) {
                 return true;
             }
         }
