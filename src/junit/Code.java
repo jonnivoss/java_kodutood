@@ -95,6 +95,11 @@ public class Code {
     }
 
     public static int sumIgnoringDuplicates(int[] integers) {
-        return 0;
+        int[] array = removeDuplicates(integers);
+        int sum = 0;
+        for (int number: array){
+            sum += number;
+        }
+        return sum;
     }
 }
