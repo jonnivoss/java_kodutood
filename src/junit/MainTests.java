@@ -31,6 +31,9 @@ public class MainTests {
         assertThat(Code.longestStreak(""), is(0));
 
         // other test cases for longestStreak() method
+        assertThat(Code.longestStreak("a"), is(1));
+        assertThat(Code.longestStreak("abbcccaaaad"), is(4));
+        assertThat(Code.longestStreak("abbcccaaaa"), is(4));
     }
 
     @Test
@@ -39,6 +42,9 @@ public class MainTests {
         assertThat(Code.mode(null), is(nullValue()));
 
         // other test cases for mode() method
+        assertThat(Code.mode(""), is(nullValue()));
+        assertThat(Code.mode("abcb"), is('b'));
+        assertThat(Code.mode("cbbc"), is('c'));
     }
 
     @Test
