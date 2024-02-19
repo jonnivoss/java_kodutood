@@ -1,7 +1,13 @@
 package junit;
 
+import java.util.Arrays;
+
 public class Code {
 
+    public static void main(String[] args) {
+        int[] arr = {1,2,1};
+        System.out.println(Arrays.toString(removeDuplicates(arr)));
+    }
     public static boolean isSpecial(int candidate) {
         int remainder = candidate % 11;
         return remainder >= 0 && remainder <= 3;
@@ -11,8 +17,8 @@ public class Code {
         if(inputString == null || inputString.isEmpty()){
             return 0;
         }
-        Integer counter = 0;
-        Integer result = counter;
+        int counter = 0;
+        int result = counter;
         Character temp = inputString.charAt(0);
         for(Character c : inputString.toCharArray()){
             if(temp != c){
@@ -60,8 +66,32 @@ public class Code {
         return counter;
     }
 
+    private static int[] append(int[] integers, int number){
+        int[] array = Arrays.copyOf(integers, integers.length + 1);
+        array[array.length-1] = number;
+        return array;
+    }
+    private static boolean isInList(int[] integers, int number){
+        for (int j = 0; j < integers.length; j++) {
+            if(number == integers[j]){
+                return true;
+            }
+        }
+        return false;
+    }
     public static int[] removeDuplicates(int[] integers) {
-        return null;
+        if(integers == null || integers.length == 0){
+            return null;
+        }
+        int[] temp = new int[0];
+        temp = append(temp,integers[0]);
+        for (int i = 1; i < integers.length; i++) {
+            if(!isInList(temp,integers[i])){
+                temp = append(temp,integers[i]);
+            }
+
+        }
+        return temp;
     }
 
     public static int sumIgnoringDuplicates(int[] integers) {
