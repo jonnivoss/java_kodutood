@@ -1,13 +1,15 @@
 package oo.hide;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PointSet {
 
     private Point[] points;
     private int pointsInSet;
     private int capacity;
-    private static Point[] enlargenArray(Point[] pointArray){
+    private Point[] enlargenArray(Point[] pointArray){
         int len = pointArray.length;
         Point[] newArray = Arrays.copyOf(pointArray, pointArray.length * 2);
         for (int i = len; i < newArray.length; i++){
@@ -17,10 +19,11 @@ public class PointSet {
     }
     private Point[] removeElement(Point[] rec, int index){
         Point[] temp = Arrays.copyOf(rec, rec.length);
-        for (int i = index; i < rec.length - 1; i++) {
+        for (int i = index; i < pointsInSet - 1; i++) {
             temp[i] = temp[i+1];
         }
-        temp[rec.length - 1] = null;
+        pointsInSet--;
+        temp = Arrays.copyOf(temp, pointsInSet);
         return temp;
     }
 
@@ -39,7 +42,7 @@ public class PointSet {
         if (contains(point)){
             return;
         }
-        if(pointsInSet >= capacity){
+        if(pointsInSet == capacity){
             points = enlargenArray(points);
         }
 
@@ -85,6 +88,7 @@ public class PointSet {
     }
 
     public void remove(Point point) {
+        if(!this.contains(point)){ return;}
         for (int i = 0; i < points.length; i++){
             if(point.equals(points[i])){
                 points = removeElement(points, i);
@@ -94,19 +98,15 @@ public class PointSet {
 
     @Override
     public boolean equals(Object obj){
-        if(!(obj instanceof PointSet))
+        if(!(obj instanceof PointSet set))
         {
             return true;
-        }
-        PointSet set = (PointSet) obj;
-        if (size() != set.size()){
-            return false;
         }
         if(set.size() == 0 && this.size() == 0){
             return true;
         }
-        for (Point p : points){
-            if(!set.contains(p)){
+        for (int i = 0; i < this.size(); i++){
+            if(!set.contains(points[i])){
                 return false;
             }
         }
@@ -119,17 +119,15 @@ public class PointSet {
         if(pointsInSet == 0){
             return "No elements in set";
         }
-        StringBuilder s = new StringBuilder(new String() + "(%s, %s)".formatted(points[0].getX(), points[0].getY()));
-        for (int i  = 1; i < pointsInSet; i++){
+        String[] s = new String[pointsInSet];
+        for (int i  = 0; i < pointsInSet; i++){
             if(points[i] == null){
-                s.append(", ");
-                s.append("null");
+                s[i] = ("null");
             }else {
-                s.append(", ");
-                s.append("(%s, %s)".formatted(points[i].getX(), points[i].getY()));
+                s[i] = ("(%s, %s)".formatted(points[i].getX(), points[i].getY()));
             }
-
         }
-        return s.toString();
+        String temp = String.join(", ",s);
+        return temp;
     }
 }
