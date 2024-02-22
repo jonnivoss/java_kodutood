@@ -25,10 +25,6 @@ public class Point {
         }
         Point p = (Point) obj;
 
-        if(p.x == this.x && p.y == this.y){
-            return true;
-        }
-
-        return false;
+        return p.x == this.x && p.y == this.y;
     }
 }
