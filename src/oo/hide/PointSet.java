@@ -122,9 +122,9 @@ public class PointSet {
         String[] s = new String[pointsInSet];
         for (int i  = 0; i < pointsInSet; i++){
             if(points[i] == null){
-                s[i] = ("null");
+                s[i] = "null";
             }else {
-                s[i] = ("(%s, %s)".formatted(points[i].getX(), points[i].getY()));
+                s[i] = "(%s, %s)".formatted(points[i].getX(), points[i].getY());
             }
         }
         String temp = String.join(", ",s);
