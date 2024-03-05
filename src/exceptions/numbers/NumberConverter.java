@@ -50,11 +50,35 @@ public class NumberConverter {
         }
 
         String word = "";
+        if(number >= 1000000000){
+            word += properties.getProperty(String.valueOf(1));
+            word += properties.getProperty("billion-before-delimiter");
+            word += properties.getProperty("billion-singular");
+        }
+
+        //milion
+        if(number >= 1000000 && number < 1000000000){
+            int thousands = number/ 1000000;
+            int hundred = thousands%1000;
+            word += hundredMaker(hundred);
+            System.out.println(hundred);
+            word += properties.getProperty("million-before-delimiter");
+            if(hundred == 1){
+                word += properties.getProperty("million-singular");
+            }else {
+                word += properties.getProperty("million-plural");
+            }
+            if(number%1000000 != 0){
+                word += properties.getProperty("million-after-delimiter");
+            }
+            number %= 1000000;
+        }
 
         //thousand
-        if(number >= 1000){
+        if(number >= 1000 && number < 1000000){
             int thousands = number/ 1000;
-            word += properties.getProperty(String.valueOf(thousands));
+            int hundred = thousands%1000;
+            word += hundredMaker(hundred);
             word += properties.getProperty("thousand-before-delimiter");
             word += properties.getProperty("thousand");
             if(number%1000 != 0){
