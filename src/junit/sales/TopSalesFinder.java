@@ -78,7 +78,7 @@ public class TopSalesFinder {
     private SalesRecord[] copy(SalesRecord[] records, int lenght){
         SalesRecord[] temp = new SalesRecord[lenght];
         int ler;
-        ler = (records.length < lenght)? records.length:lenght;
+        ler = records.length < lenght? records.length:lenght;
         for (int i = 0; i < ler; i++) {
             temp[i] = records[i];
         }
@@ -87,7 +87,7 @@ public class TopSalesFinder {
     private String[] copyString(String[] records, int lenght){
         String[] temp = new String[lenght];
         int ler;
-        ler = (records.length < lenght)? records.length:lenght;
+        ler = records.length < lenght? records.length:lenght;
         for (int i = 0; i < ler; i++) {
             temp[i] = records[i];
         }
