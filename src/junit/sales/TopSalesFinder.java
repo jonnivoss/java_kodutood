@@ -1,6 +1,5 @@
 package junit.sales;
 
-import java.util.Arrays;
 
 public class TopSalesFinder {
     private SalesRecord[] records = new SalesRecord[0];
@@ -9,7 +8,7 @@ public class TopSalesFinder {
         records = appendSale(records, record);
     }
     private SalesRecord[] appendSale(SalesRecord[] rec, SalesRecord str){
-        SalesRecord[] array = Arrays.copyOf(rec, rec.length + 1);
+        SalesRecord[] array = copy(rec, rec.length + 1);
         array[array.length-1] = str;
         return array;
     }
@@ -25,7 +24,7 @@ public class TopSalesFinder {
     }
 
     private String[] appendString(String[] rec, String str){
-        String[] array = Arrays.copyOf(rec, rec.length + 1);
+        String[] array = copyString(rec, rec.length + 1);
         array[array.length-1] = str;
         return array;
     }
@@ -55,15 +54,15 @@ public class TopSalesFinder {
     }
 
     private SalesRecord[] removeFromSalesArray(SalesRecord[] rec, int index){
-        SalesRecord[] temp = Arrays.copyOf(rec, rec.length);
+        SalesRecord[] temp = copy(rec, rec.length);
         for (int i = index; i < rec.length - 1; i++) {
             temp[i] = temp[i+1];
         }
-        return Arrays.copyOf(temp, temp.length - 1);
+        return copy(temp, temp.length - 1);
     }
 
     public void removeSalesRecordsFor(String id) {
-        SalesRecord[] temp = Arrays.copyOf(records, records.length);
+        SalesRecord[] temp = copy(records, records.length);
         // removes records with specified id
         int index = 0;
         for (SalesRecord sale : records) {
@@ -73,7 +72,26 @@ public class TopSalesFinder {
             }
             index++;
         }
-        records = Arrays.copyOf(temp, temp.length);
+        records = copy(temp, temp.length);
+    }
+
+    private SalesRecord[] copy(SalesRecord[] records, int lenght){
+        SalesRecord[] temp = new SalesRecord[lenght];
+        int ler;
+        ler = (records.length < lenght)? records.length:lenght;
+        for (int i = 0; i < ler; i++) {
+            temp[i] = records[i];
+        }
+        return temp;
+    }
+    private String[] copyString(String[] records, int lenght){
+        String[] temp = new String[lenght];
+        int ler;
+        ler = (records.length < lenght)? records.length:lenght;
+        for (int i = 0; i < ler; i++) {
+            temp[i] = records[i];
+        }
+        return temp;
     }
 
 }
