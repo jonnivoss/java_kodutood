@@ -12,7 +12,6 @@ public class NumberConverter {
     public static void main(String[] args) {
         NumberConverter nb = new NumberConverter("es");
         System.out.println(nb.numberInWords(1));
-        //üksDELIMITER2HUNDREDSDELIMITER3üks
     }
 
     private Properties properties;
