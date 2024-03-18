@@ -120,10 +120,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
 
     @Override
     public int compareTo(Hand other) {
-/*        if(this.getHandType() == other.getHandType()){
-            return 0;
-            //siin peab ss hakkama vaatama suurimat kaarti
-        }*/
+
         return 0;
     }
 }
