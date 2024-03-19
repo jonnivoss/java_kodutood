@@ -5,7 +5,7 @@ import java.util.*;
 public class Hand implements Iterable<Card>, Comparable<Hand> {
 
     private List<Card> cards = new ArrayList<>();
-
+    public List<Card> getCards(){ return cards;}
 
     public void addCard(Card card) {
         cards.add(card);
@@ -40,16 +40,22 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
 
     private HandType getFlush(){
         Set<Card.CardSuit> suits = new HashSet<>();
+        List<Card.CardSuit> duplicates = new ArrayList<>();
         for (Card card : cards){
+            if(suits.contains(card.getSuit())){
+                duplicates.add(card.getSuit());
+            }
             suits.add(card.getSuit());
         }
         if(suits.size() == 1){
+            return HandType.FLUSH;
+        } else if (suits.size() == 3 && duplicates.size() > 4) {
             return HandType.FLUSH;
         }
         return null;
     }
     private HandType getStraight(){
-        if(cards.size() != 5){
+        if(cards.size() < 5){
             return null;
         }
         int sCounter = 0;
