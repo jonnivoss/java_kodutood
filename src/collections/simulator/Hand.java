@@ -6,6 +6,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
 
     private List<Card> cards = new ArrayList<>();
 
+
     public void addCard(Card card) {
         cards.add(card);
     }
@@ -16,6 +17,8 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
     }
 
     public HandType getHandType() {
+        //sort cards
+        Collections.sort(cards);
         //find if there are duplicate values and if they are 1 pair, 2 pair, triple, or four of a kind
         HandType findGroups = getMultiples();
         if (findGroups != null) {
@@ -50,14 +53,17 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
             return null;
         }
         int sCounter = 0;
-        if(cards.getFirst().getValue() == Card.CardValue.A){
-            sCounter++;
-        }
+
         for (Card.CardValue cardValue : Card.CardValue.values()){
-            if(cards.get(sCounter).getValue() == cardValue){
+            Card.CardValue temp = cards.get(sCounter).getValue();
+            if(temp == cardValue){
                 sCounter++;
             }else {
                 sCounter = 0;
+            }
+            if (temp == Card.CardValue.S5 && sCounter == 4
+                    && cards.getLast().getValue() == Card.CardValue.A) {
+                return HandType.STRAIGHT;
             }
             if (sCounter == 5){
                 return HandType.STRAIGHT;
@@ -120,7 +126,15 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
 
     @Override
     public int compareTo(Hand other) {
-
-        return 0;
+        int temp = getHandType().compareTo(other.getHandType());
+        if(temp == 0){
+            for (int i = cards.size() - 1; i >= 0; i--) {
+                int individualCardComparison = cards.get(i).compareTo(other.cards.get(i));
+                if(individualCardComparison != 0){
+                    return individualCardComparison;
+                }
+            }
+        }
+        return temp;
     }
 }
