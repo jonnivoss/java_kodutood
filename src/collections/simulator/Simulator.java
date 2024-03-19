@@ -38,7 +38,7 @@ public class Simulator {
             Card.CardSuit randomSuit = suits[r.nextInt(Card.CardSuit.values().length)];
             Card temp = new Card(randomValue,randomSuit);
             if(!hand.contains(temp)){
-                if((hands.length == 2 && !hands[0].contains(temp) && !hands[1].contains(temp))){
+                if(hands.length == 2 && !hands[0].contains(temp) && !hands[1].contains(temp)){
                     hand.addCard(temp);
                     cards ++;
                 } else if (hands.length != 2) {
