@@ -49,13 +49,6 @@ public class SimulatorTests {
         assertThat(map.get(HandType.TRIPS), is(closeTo(2.113)));
     }
 
-    @Test
-    public void test(){
-        Simulator simulator = new Simulator(1000);
-        Hand hand1 = getSuitedHand("9h9s");
-        Hand hand2 = getSuitedHand("AdKc");
-        simulator.getWinningOdds(hand1,hand2);
-    }
 
     @Test
     public void calculatesWinningsOddsForHoldEmHand() {

@@ -66,11 +66,11 @@ public class Simulator {
             p2.addCard(player2hand.getCards().getFirst());
             p2.addCard(player2hand.getCards().getLast());
             int compare = p1.compareTo(p2);
-            if(compare > 0){
+            if(compare >= 0){
                 p1Wins++;
             }
         }
-        System.out.println((double) p1Wins / iterations * 100);
+
         return p1Wins / iterations * 100;
     }
 
