@@ -91,7 +91,8 @@ public class ShoppingCart<T  extends CartItem> {
 
     public void addAll(Object items) {
         if(items instanceof List<?>){
-            for (Object o : (List<Object>)items){
+            List<Object> temp = (List<Object>)items;
+            for (Object o : temp){
                 add(o);
             }
         }
