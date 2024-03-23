@@ -61,10 +61,10 @@ public class Simulator {
                 p1.addCard(card);
                 p2.addCard(card);
             }
-            p1.addCard(player1hand.getCards().getFirst());
-            p1.addCard(player1hand.getCards().getLast());
-            p2.addCard(player2hand.getCards().getFirst());
-            p2.addCard(player2hand.getCards().getLast());
+            p1.addCard(player1hand.getCards().get(0));
+            p1.addCard(player1hand.getCards().get(1));
+            p2.addCard(player2hand.getCards().get(0));
+            p2.addCard(player2hand.getCards().get(1));
             int compare = p1.compareTo(p2);
             if(compare >= 0){
                 p1Wins++;

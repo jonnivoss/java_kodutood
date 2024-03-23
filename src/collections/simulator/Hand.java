@@ -68,7 +68,7 @@ public class Hand implements Iterable<Card>, Comparable<Hand> {
                 sCounter = 0;
             }
             if (temp == Card.CardValue.S5 && sCounter == 4
-                    && cards.getLast().getValue() == Card.CardValue.A) {
+                    && cards.get(5).getValue() == Card.CardValue.A) {
                 return HandType.STRAIGHT;
             }
             if (sCounter == 5){
