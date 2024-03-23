@@ -93,7 +93,7 @@ public class ShoppingCart<T  extends CartItem> {
         if(!(items instanceof List<?>)){
             throw new RuntimeException("millegi parast on Listi asemel midagi muud");
         }
-        List<?> temp = (List<Object>)items;
+        List<Object> temp = (List<Object>) items;
         for (Object o : temp){
             add(o);
         }
