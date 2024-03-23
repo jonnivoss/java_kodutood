@@ -90,10 +90,9 @@ public class ShoppingCart<T  extends CartItem> {
     }
 
     public void addAll(Object items) {
-        if(!(items instanceof List<?>)){
+        if(!(items instanceof List<?> temp)){
             throw new RuntimeException("millegi parast on Listi asemel midagi muud");
         }
-        List<Object> temp = (List<Object>) items;
         for (Object o : temp){
             add(o);
         }
