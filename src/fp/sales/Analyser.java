@@ -60,13 +60,20 @@ public class Analyser {
     public String statesWithBiggestSales() {
         var map = repository
                 .getEntries();
+
         var top = map
                 .stream()
                 .collect(Collectors
                         .toMap(Entry::getState,
                                 Entry::getAmount,
                                 Double::sum));
-        System.out.println(top.keySet());
-        return null;
+
+        String topThreeKeys = top.entrySet().stream()
+                .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
+                .limit(3)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.joining(", "));
+
+        return topThreeKeys;
     }
 }
